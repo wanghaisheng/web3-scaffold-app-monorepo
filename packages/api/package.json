@@ -1,0 +1,37 @@
+{
+  "name": "@web3-scaffold/api",
+  "version": "0.4.3",
+  "private": true,
+  "description": "tRPC API package for web3-scaffold",
+  "license": "MIT",
+  "author": "web3-scaffold",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "bun run rm -rf dist *.tsbuildinfo",
+    "dev": "tsc -w -p tsconfig.build.json",
+    "lint": "eslint .  --max-warnings 0",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@trpc/server": "next",
+    "superjson": "^2.2.6",
+    "zod": "^3.23.8",
+    "@web3-scaffold/pipeline": "workspace:^",
+    "@web3-scaffold/auth": "workspace:^",
+    "@web3-scaffold/db": "workspace:^",
+    "@web3-scaffold/env": "workspace:^",
+    "@web3-scaffold/utils": "workspace:^"
+  },
+  "devDependencies": {
+    "@web3-scaffold/eslint": "workspace:^",
+    "@web3-scaffold/tsconfig": "workspace:^"
+  }
+}
