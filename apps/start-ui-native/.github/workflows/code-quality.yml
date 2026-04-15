@@ -1,0 +1,63 @@
+name: 🔎 Code Quality
+
+env:
+  EXPO_PUBLIC_API_URL: ${{ vars.API_URL }}
+  EXPO_PUBLIC_AUTH_URL: ${{ vars.AUTH_URL }}
+  EXPO_PUBLIC_OPENAPI_URL: ${{ vars.OPENAPI_URL }}
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  linter:
+    name: 🧹 Linter
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v4
+
+      - name: 🏗 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: 📦 Install dependencies
+        run: pnpm install
+
+      - name: Run eslint
+        run: pnpm run lint:eslint
+
+  typescriptChecker:
+    name: 🟦 TypeScript Checker
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [22, 'lts/*']
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'pnpm'
+
+      - name: Install deps
+        run: pnpm install
+
+      - name: Run Typescript checker
+        run: pnpm run lint:ts

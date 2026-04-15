@@ -1,0 +1,17 @@
+{
+  "tabs": {
+    "home": {
+      "title": "Accueil"
+    },
+    "books": {
+      "title": "Livres"
+    },
+    "account": {
+      "title": "Compte"
+    }
+  },
+  "notFound": {
+    "title": "Cette page n'existe pas 🤔",
+    "backInSafety": "Retourner en lieu sûr"
+  }
+}

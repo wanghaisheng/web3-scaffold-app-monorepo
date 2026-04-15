@@ -1,0 +1,44 @@
+{
+  "cli": {
+    "version": ">= 16.20.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "channel": "development",
+      "distribution": "internal",
+      "developmentClient": true,
+      "env": {
+        "APP_ENV": "development"
+      }
+    },
+    "staging": {
+      "channel": "staging",
+      "distribution": "internal",
+      "env": {
+        "APP_ENV": "staging"
+      }
+    },
+    "production": {
+      "channel": "production",
+      "autoIncrement": true,
+      "env": {
+        "APP_ENV": "production"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascAppId": "YOUR_ASC_APP_ID",
+        "ascApiKeyId": "YOUR_ASC_API_KEY_ID",
+        "ascApiKeyIssuerId": "YOUR_ASC_API_KEY_ISSUER_ID",
+        "ascApiKeyPath": "AuthKey_YOUR_KEY_ID.p8"
+      },
+      "android": {
+        "track": "internal",
+        "releaseStatus": "draft"
+      }
+    }
+  }
+}
