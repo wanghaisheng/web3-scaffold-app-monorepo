@@ -13,8 +13,8 @@ export default function GameScreen() {
           // iOS uses --main-pack
           // Android uses --path
           ...(Platform.OS === 'ios'
-            ? { '--main-pack': 'assets/godot/main.pck' }
-            : { '--path': '/godot/main' }
+            ? { '--main-pack': 'assets/godot/godot/main.pck' }
+            : { '--path': '/godot/godot/main' }
           ),
         });
         console.log('Godot initialized successfully');
