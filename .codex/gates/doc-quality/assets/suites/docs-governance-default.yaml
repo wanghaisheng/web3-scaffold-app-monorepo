@@ -1,0 +1,6 @@
+id: docs-governance-default
+description: Placeholder doc-quality suite definition. No root docs-governance command is currently wired.
+report_output: reports/governance/doc-quality-report.json
+commands:
+  - pnpm format:check
+  - pnpm lint

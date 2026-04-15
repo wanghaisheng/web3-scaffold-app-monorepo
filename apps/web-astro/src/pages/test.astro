@@ -1,0 +1,71 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+const pageTitle = 'Test Page - OneKey Astro';
+const pageDescription = 'Test page for OneKey Astro migration';
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <div class="container">
+    <h1>OneKey Astro Test Page</h1>
+    <p>This is a test page to verify Astro is working correctly.</p>
+    
+    <div class="card">
+      <h2>Migration Status</h2>
+      <ul>
+        <li>✅ Astro configuration created</li>
+        <li>✅ Basic layout component</li>
+        <li>✅ Main page with KitProvider</li>
+        <li>✅ React integration ready</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <h2>Next Steps</h2>
+      <ol>
+        <li>Install dependencies: <code>yarn install</code></li>
+        <li>Start dev server: <code>yarn dev</code></li>
+        <li>Test React components</li>
+        <li>Verify KitProvider functionality</li>
+      </ol>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  
+  h1 {
+    color: #007AFF;
+    margin-bottom: 2rem;
+  }
+  
+  .card {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card h2 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  ul, ol {
+    line-height: 1.6;
+  }
+  
+  code {
+    background: #e9ecef;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+</style>

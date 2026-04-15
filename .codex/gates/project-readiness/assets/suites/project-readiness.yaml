@@ -1,0 +1,6 @@
+id: project-readiness
+description: Placeholder readiness suite definition. No root readiness command is currently wired.
+report_output: reports/governance/project-readiness-report.json
+commands:
+  - pnpm lint
+  - pnpm build

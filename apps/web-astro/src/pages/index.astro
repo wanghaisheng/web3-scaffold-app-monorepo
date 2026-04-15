@@ -1,0 +1,25 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { KitProvider } from '@onekeyhq/kit';
+
+const pageTitle = 'OneKey - Secure Crypto Wallet';
+const pageDescription = 'The most secure crypto wallet for Bitcoin, Ethereum, and more.';
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <div client:load id="react-app">
+    <KitProvider />
+  </div>
+</Layout>
+
+<style>
+  #root {
+    min-height: 100vh;
+    width: 100%;
+  }
+  
+  #react-app {
+    width: 100%;
+    height: 100%;
+  }
+</style>

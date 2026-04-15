@@ -1,0 +1,50 @@
+id: governed-surfaces
+governed_roots:
+  - docs/system-maps
+governed_documents:
+  - pattern: docs/system-maps/*.md
+    contract: system-map
+  - path: README.md
+    contract: dev-plan-overview
+workflow_documents:
+  - path: .codex/README.md
+    contract: dev-plan-overview
+    overrides:
+      require_frontmatter: false
+      check_review_recency: false
+      check_source_of_truth: false
+      check_validation_entrypoints: false
+  - path: .codex/PROJECT-RULES.md
+    contract: dev-plan-overview
+    overrides:
+      require_frontmatter: false
+      check_review_recency: false
+      check_source_of_truth: false
+      check_validation_entrypoints: false
+  - path: .codex/workflows/quick.md
+    contract: dev-plan-overview
+    overrides:
+      require_frontmatter: false
+      check_review_recency: false
+      check_source_of_truth: false
+      check_validation_entrypoints: false
+  - path: .codex/workflows/bmm.md
+    contract: dev-plan-overview
+    overrides:
+      require_frontmatter: false
+      check_review_recency: false
+      check_source_of_truth: false
+      check_validation_entrypoints: false
+  - path: .codex/workflows/validate.md
+    contract: dev-plan-overview
+    overrides:
+      require_frontmatter: false
+      check_review_recency: false
+      check_source_of_truth: false
+      check_validation_entrypoints: false
+governed_package_scripts:
+  - build
+  - dev
+  - lint
+  - format:check
+  - check:boundaries
