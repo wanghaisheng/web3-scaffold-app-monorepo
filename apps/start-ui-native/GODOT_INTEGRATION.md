@@ -26,32 +26,65 @@ Place your Godot game files in the `assets/godot/` directory:
 **For Android**:
 - Place your exported Godot game files as a folder structure at: `assets/godot/godot-files/main/`
 
-### 3. Custom Expo Plugin (Optional)
+### 3. Custom Expo Plugin
 
-Create a custom Expo plugin to handle Godot file copying during prebuild:
+A custom Expo plugin is already implemented at `plugins/godot/` to handle Godot file copying during prebuild:
+
+**iOS Plugin** (`plugins/godot/src/withPckFile.ts`):
+- Automatically copies `main.pck` from `assets/godot/` to the iOS project root
+- Adds the file to Xcode project resources
+- Ensures proper build configuration for iOS
+
+**Android Plugin** (`plugins/godot/src/withGodotFiles.ts`):
+- Automatically copies Godot files from `assets/godot/godot-files/main/` to `android/app/src/main/assets/main/`
+- Recursively copies all files and subdirectories
+- Ensures the assets directory exists before copying
+- Runs during the `expo prebuild` process
+
+The plugin is already configured in `app.config.ts`:
 
 ```typescript
-// plugins/godot.ts
-import { ConfigPlugin } from 'expo/config-plugins';
-import { withPlugins } from 'expo/config-plugins';
-
-const withGodot: ConfigPlugin = (config) => {
-  // Add custom Godot file handling
-  return config;
-};
-
-export default withGodot;
+plugins: [
+  './plugins/godot',
+  [
+    'expo-build-properties',
+    {
+      android: {
+        minSdkVersion: 29,
+        extraMavenRepos: [
+          '../../node_modules/react-native-godot/android/libs/libgodot-android/4.5.1.migeran.2'
+        ]
+      }
+    }
+  ]
+]
 ```
 
-Update `app.config.ts`:
+### 4. Android Patch
 
-```typescript
-export default {
-  plugins: [
-    'react-native-godot',
-    './plugins/godot',
-  ],
-};
+A patch has been applied to fix Android crashes when using Expo with the new React Native architecture (Arc).
+
+**Patch File**: `patches/react-native-godot.patch`
+
+**Purpose**: The patch ensures proper JNI initialization by setting the JavaVM pointer in LibGodot before initialization, which is critical for Android thread creation.
+
+**Application**: The patch is automatically applied during `pnpm install` via `patch-package`.
+
+**Configuration** in `package.json`:
+
+```json
+{
+  "pnpm": {
+    "patchedDependencies": {
+      "react-native-godot@1.0.1": "patches/react-native-godot.patch"
+    }
+  }
+}
+```
+
+If you encounter crashes on Android, ensure the patch is applied by running:
+```bash
+pnpm install
 ```
 
 ## Usage
