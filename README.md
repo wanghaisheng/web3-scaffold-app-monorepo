@@ -104,6 +104,7 @@ yarn app:ext
 - [数据库技术选型](docs/database-technology-choice.md) - Realm vs SQLite 技术选型分析
 - [服务端数据库同步](docs/server-db-cross-platform-sync.md) - Drizzle + Cloudflare D1 架构下的跨端同步策略
 - [多场景数据库架构](docs/multi-scenario-database-architecture.md) - Drizzle 支持钱包/DApp/冷钱包三大场景
+- [场景可行性分析](docs/scenario-feasibility-analysis.md) - 当前架构下文档场景可行性评估
 
 ### 业务规划
 
