@@ -79,7 +79,12 @@ coverage/
 ehthumbs.db
 
 # Godot specific
-*.godot/
+# Godot editor cache
+.godot/
+.import/
+.export/
+# Godot project files
+*.godot
 *.import
 *.export
 *.tscn
@@ -87,10 +92,33 @@ ehthumbs.db
 *.ctex
 *.tres
 *.pck
+# Godot C# compilation
+.mono/
+# Godot build cache
+.android/
+.build/
+# Godot temp files
+.tmp/
+# Godot shader cache
+*.cache
 
 # Plugin build
 /plugin/build
+/plugin/.godot
+/plugin/.import
+/plugin/.export
 /ios/main.pck
+
+# Android build cache
+/android/.gradle/
+/android/.idea/
+/android/app/build/
+/android/app/src/main/assets/.godot/
+
+# iOS build cache
+/ios/Pods/
+/ios/build/
+/ios/.DS_Store
 
 # Build artifacts
 build/

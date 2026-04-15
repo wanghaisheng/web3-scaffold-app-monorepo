@@ -136,6 +136,24 @@
 - ✅ 包含 Godot 特定文件
 - ✅ 包含移动端特定配置
 - ✅ 包含跨平台配置（macOS, Windows, Linux）
+- ✅ 已更新 Godot 编译文件夹配置
+
+**Godot 编译文件夹**：
+- ✅ .godot/（编辑器缓存）
+- ✅ .import/（导入缓存）
+- ✅ .export/（导出缓存）
+- ✅ .mono/（C# 编译缓存）
+- ✅ .android/（Android 构建缓存）
+- ✅ .build/（构建缓存）
+- ✅ .tmp/（临时文件）
+- ✅ .cache/（着色器缓存）
+- ✅ plugin/.godot/（插件缓存）
+- ✅ plugin/.import/（插件导入缓存）
+- ✅ plugin/.export/（插件导出缓存）
+- ✅ android/.gradle/（Gradle 缓存）
+- ✅ android/app/build/（Android 应用构建）
+- ✅ ios/Pods/（iOS Pods 缓存）
+- ✅ ios/build/（iOS 构建缓存）
 
 **问题**：
 - ⚠️ 注释了 yarn.lock（第 112 行）
