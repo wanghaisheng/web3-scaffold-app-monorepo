@@ -102,6 +102,7 @@ yarn app:ext
 - [在线功能实现](docs/online-features-implementation.md) - 区块链节点连接和 API 服务实现详解
 - [数据库与跨端同步](docs/database-cross-platform-sync.md) - 本地数据库策略和跨端数据同步机制
 - [数据库技术选型](docs/database-technology-choice.md) - Realm vs SQLite 技术选型分析
+- [服务端数据库同步](docs/server-db-cross-platform-sync.md) - Drizzle + Cloudflare D1 架构下的跨端同步策略
 
 ### 业务规划
 
