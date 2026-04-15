@@ -1,5 +1,5 @@
 {
-  "name": "@onekeyhq/app-monorepo",
+  "name": "@web3-scaffold/app-monorepo",
   "packageManager": "yarn@4.12.0",
   "private": true,
   "version": "1.0.0",
