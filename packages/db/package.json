@@ -1,51 +1,56 @@
 {
   "name": "@web3-scaffold/db",
-  "version": "0.1.0",
+  "version": "0.4.3",
   "private": true,
-  "type": "module",
+  "description": "web3-scaffold database package with SQLite migrations and Drizzle ORM type safety",
+  "license": "MIT",
+  "author": "web3-scaffold",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "default": "./src/index.ts"
+      "default": "./dist/index.js"
+    },
+    "./schema": {
+      "types": "./dist/schema/index.d.ts",
+      "default": "./dist/schema/index.js"
     }
   },
-  "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "dev": "tsc",
-    "format": "prettier --check . --ignore-path ../../.gitignore",
-    "lint": "eslint",
-    "push": "pnpm with-env drizzle-kit push",
-    "studio": "pnpm with-env drizzle-kit studio",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "with-env": "dotenv -e ../../.env --",
-    "generate": "pnpm with-env drizzle-kit generate",
-    "migrate": "pnpm with-env drizzle-kit migrate",
-    "test": "vitest",
-    "test:local": "vitest --config vitest.config.local.ts",
-    "db:generate-local": "drizzle-kit generate --config drizzle.config.local.ts",
-    "db:migrate-local": "drizzle-kit migrate --config drizzle.config.local.ts",
-    "db:studio-local": "drizzle-kit studio --config drizzle.config.local.ts"
+    "clean": "bun run rm -rf dist *.tsbuildinfo",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "node simple-sql-runner.cjs",
+    "db:reset": "node reset_and_migrate.cjs",
+    "db:status": "sqlite3 dev.db \"SELECT migration_file, executed_at, success FROM migration_log ORDER BY executed_at DESC;\"",
+    "db:tables": "sqlite3 dev.db \"SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;\"",
+    "db:studio": "drizzle-kit studio",
+    "dev": "tsc -w",
+    "lint": "eslint .  --max-warnings 0",
+    "typecheck": "tsc",
+    "test": "node run-all-tests.cjs",
+    "test:unit": "bun test test/unit",
+    "test:integration": "bun test test/integration",
+    "test:functional": "bun test test/functional",
+    "test:performance": "bun test test/performance",
+    "test:coverage": "bun test --coverage",
+    "test:watch": "bun test --watch",
+    "test:run": "bun test",
+    "test:comprehensive": "bun test test/unit/comprehensive-schema-test.test.ts",
+    "test:report": "node generate-test-report.cjs",
+    "test:ci": "npm run test && npm run test:report",
+    "test:quick": "bun test test/unit/basic-bun-test.test.ts test/unit/minimal-schema-test.test.ts"
   },
   "dependencies": {
-    "@vercel/postgres": "^0.10.0",
-    "drizzle-orm": "^0.45.1",
-    "drizzle-zod": "^0.8.3",
-    "zod": "catalog:"
+    "@libsql/client": "^0.17.2",
+    "drizzle-orm": "^0.33.0",
+    "zod": "^3.23.8",
+    "@web3-scaffold/env": "workspace:*"
   },
   "devDependencies": {
-    "@web3-scaffold/eslint-config": "workspace:*",
-    "@web3-scaffold/prettier-config": "workspace:*",
-    "@web3-scaffold/tsconfig": "workspace:*",
-    "@types/better-sqlite3": "^7.6.8",
-    "better-sqlite3": "^9.2.2",
-    "dotenv-cli": "^11.0.0",
-    "drizzle-kit": "^0.31.9",
-    "eslint": "catalog:",
-    "prettier": "catalog:",
-    "typescript": "catalog:",
-    "vitest": "^1.6.0"
-  },
-  "prettier": "@web3-scaffold/prettier-config"
+    "@types/node": "^25.5.2",
+    "drizzle-kit": "^0.24.2",
+    "eslint": "^9.15.0",
+    "typescript": "^5.6.3"
+  }
 }

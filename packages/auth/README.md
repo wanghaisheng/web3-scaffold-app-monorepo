@@ -1,6 +1,6 @@
 # @web3-scaffold/auth
 
-基于 Better Auth 的认证包，为 web3-scaffold 项目提供统一的认证解决方案。
+基于 Better Auth 的认证包，为 GutHealthPal 项目提供统一的认证解决方案。
 
 ## 特性
 
@@ -14,7 +14,7 @@
 ## 安装
 
 ```bash
-pnpm add @web3-scaffold/auth
+pnpm add @gut-health-pal/auth
 ```
 
 ## 配置
@@ -46,7 +46,7 @@ AUTH_GOOGLE_SECRET=your-google-client-secret
 ### 服务端
 
 ```typescript
-import { auth } from '@web3-scaffold/auth'
+import { auth } from '@gut-health-pal/auth'
 
 // 在 Next.js API 路由中
 export const { GET, POST } = auth.handler
@@ -55,7 +55,7 @@ export const { GET, POST } = auth.handler
 ### 客户端
 
 ```typescript
-import { authClient } from '@web3-scaffold/auth/client'
+import { authClient } from '@gut-health-pal/auth/client'
 
 // 在 React 组件中
 export async function AuthButton() {
@@ -77,11 +77,11 @@ export async function AuthButton() {
 
 ## 架构
 
-本包遵循 web3-scaffold 的配置驱动架构：
+本包遵循 GutHealthPal 的配置驱动架构：
 
-- `@web3-scaffold/db` - 提供数据库连接和 schema
-- `@web3-scaffold/env` - 提供环境变量配置
-- `@web3-scaffold/utils` - 提供工具函数
+- `@gut-health-pal/db` - 提供数据库连接和 schema
+- `@gut-health-pal/env` - 提供环境变量配置
+- `@gut-health-pal/utils` - 提供工具函数
 
 ## 迁移
 
