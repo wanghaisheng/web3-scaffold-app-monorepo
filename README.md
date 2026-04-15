@@ -105,7 +105,8 @@ yarn app:ext
 - [服务端数据库同步](docs/server-db-cross-platform-sync.md) - Drizzle + Cloudflare D1 架构下的跨端同步策略
 - [多场景数据库架构](docs/multi-scenario-database-architecture.md) - Drizzle 支持钱包/DApp/冷钱包三大场景
 - [场景可行性分析（最终版）](docs/scenario-feasibility-analysis-final.md) - 当前架构下文档场景可行性评估（完整 OneKey 架构）
-- [Bitcoin Ordinals Roadmap](docs/bitcoin-ordinals-roadmap.md) - 基于 OneKey 架构的 Ordinals 实施路线图
+- [Bitcoin Ordinals Roadmap（优先级版）](docs/bitcoin-ordinals-roadmap-prioritized.md) - 基于 2025 热门项目 + GutHealth DAO 的 Ordinals 实施路线图
+- [益生菌 Ordinals 创新点子](docs/probiotics-ordinals-ideas.md) - 益生菌市场与 Ordinals 技术结合的创新应用场景
 
 ### 业务规划
 
