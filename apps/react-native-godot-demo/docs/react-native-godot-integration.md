@@ -626,7 +626,254 @@ export default function withGodotFiles(config) {
 - Android 使用文件夹结构
 - 自定义插件自动处理差异
 
-## 七、总结
+## 七、RTNGodotView 使用方式
+
+### 7.1 全屏 Godot 视图（整个页面）
+
+**场景**：整个页面都是 Godot 游戏，没有 React Native UI
+
+**代码示例**：
+```typescript
+import { RTNGodotView } from 'react-native-godot';
+
+export default function FullScreenGame() {
+  return (
+    <View style={styles.container}>
+      {/* 整个页面都是 Godot 视图 */}
+      <RTNGodotView style={styles.fullScreen} />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  fullScreen: {
+    flex: 1, // 占据整个屏幕
+  },
+});
+```
+
+**特点**：
+- ✅ 整个页面都是 Godot 渲染
+- ✅ 没有额外的 React Native UI
+- ✅ 适合纯游戏应用
+- ✅ 性能最优
+
+### 7.2 局部 Godot 视图（页面的一部分）
+
+**场景**：页面的一部分是 Godot 游戏，其他部分是 React Native UI
+
+**代码示例**：
+```typescript
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { RTNGodotView, runOnGodotThread } from 'react-native-godot';
+
+export default function HybridScreen() {
+  return (
+    <View style={styles.container}>
+      {/* 顶部 React Native UI */}
+      <View style={styles.header}>
+        <Text style={styles.title}>我的游戏</Text>
+        <TouchableOpacity style={styles.menuButton}>
+          <Text>菜单</Text>
+        </TouchableOpacity>
+      </View>
+      
+      {/* 中间 Godot 视图（页面的一部分） */}
+      <RTNGodotView style={styles.gameView} />
+      
+      {/* 底部 React Native UI 控制层 */}
+      <View style={styles.controls}>
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => pressAction('ui_left')}
+        >
+          <Text>←</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => pressAction('ui_accept')}
+        >
+          <Text>跳</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => pressAction('ui_right')}
+        >
+          <Text>→</Text>
+        </TouchableOpacity>
+      </View>
+      
+      {/* 侧边 React Native UI */}
+      <View style={styles.sidebar}>
+        <Text style={styles.sidebarTitle}>排行榜</Text>
+        <Text style={styles.sidebarItem}>1. 玩家 - 1000分</Text>
+        <Text style={styles.sidebarItem}>2. 玩家 - 800分</Text>
+        <Text style={styles.sidebarItem}>3. 玩家 - 600分</Text>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#000',
+  },
+  header: {
+    height: 60,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    backgroundColor: '#333',
+  },
+  title: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  menuButton: {
+    backgroundColor: '#007AFF',
+    paddingHorizontal: 15,
+    paddingVertical: 8,
+    borderRadius: 5,
+  },
+  gameView: {
+    flex: 1, // 占据中间部分
+  },
+  controls: {
+    height: 80,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  button: {
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    padding: 20,
+    borderRadius: 10,
+  },
+  buttonText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  sidebar: {
+    width: 200,
+    backgroundColor: '#333',
+    padding: 20,
+  },
+  sidebarTitle: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  sidebarItem: {
+    color: '#fff',
+    fontSize: 16,
+    marginBottom: 10,
+  },
+});
+```
+
+**特点**：
+- ✅ Godot 视图只占页面的一部分
+- ✅ React Native UI 可以与 Godot 视图共存
+- ✅ 可以添加侧边栏、顶部栏等 UI
+- ✅ 适合混合应用（游戏 + UI）
+- ✅ 更灵活的用户体验
+
+### 7.3 多个 Godot 视图（页面的多个部分）
+
+**场景**：页面中有多个独立的 Godot 视图
+
+**代码示例**：
+```typescript
+import { View } from 'react-native';
+import { RTNGodotView, runOnGodotThread } from 'react-native-godot';
+
+export default function MultiGodotScreen() {
+  return (
+    <View style={styles.container}>
+      <View style={styles.game1}>
+        <Text>游戏 1</Text>
+        <RTNGodotView style={styles.gameView} />
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => pressAction('ui_accept')}
+        >
+          <Text>跳跃</Text>
+        </TouchableOpacity>
+      </View>
+      
+      <View style={styles.game2}>
+        <Text>游戏 2</text>
+        <RTNGodotView style={styles.gameView} />
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => pressAction('ui_accept')}
+        >
+          <Text>跳跃</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  game1: {
+    flex: 1,
+  },
+  game2: {
+    flex: 1,
+  },
+  gameView: {
+    flex: 1,
+  },
+  button: {
+    padding: 20,
+    backgroundColor: '#007AFF',
+    borderRadius: 10,
+  },
+});
+```
+
+**特点**：
+- ✅ 页面可以有多个独立的 Godot 视图
+- ✅ 每个 Godot 视图可以独立控制
+- ✅ 适合多游戏页面或游戏展示
+
+### 7.4 使用建议
+
+**全屏 Godot 视图适合**：
+- 纯游戏应用
+- 游戏展示页面
+- 游戏体验页面
+
+**局部 Godot 视图适合**：
+- 混合应用（游戏 + UI）
+- 游戏预览
+- 游戏教程
+- 游戏排行榜页面
+
+**混合使用优势**：
+- 利用 React Native 强大的 UI 能力
+- 利用 Godot 强大的游戏引擎
+- 提供更好的用户体验
+- 更灵活的页面布局
+
+## 八、总结
 
 ### 7.1 融合机制总结
 
