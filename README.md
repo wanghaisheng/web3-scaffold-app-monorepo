@@ -99,6 +99,7 @@ yarn app:ext
 - [Packages 组织学习](docs/packages-organization-learning.md) - OneKey packages 组织与跨平台复用策略
 - [跨平台组件复用](docs/cross-platform-component-reuse.md) - Web 和 App 组件跨平台复用机制
 - [后端实现与复用](docs/backend-implementation-reuse.md) - App/Web/Extension 后端实现与复用机制
+- [在线功能实现](docs/online-features-implementation.md) - 区块链节点连接和 API 服务实现详解
 
 ### 业务规划
 
