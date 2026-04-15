@@ -105,7 +105,33 @@ This document describes the technical architecture of each application in the `a
 - **Environment Configuration**: `.env.*` files per-app (e.g., `.env.mobile`)
 - **Cross-App Communication**: EventBus via `@onekeyhq/shared` (avoid direct imports)
 
-## 8. Development Workflow
+## 8. `apps/react-native-godot-demo`
+
+- **Framework**: React Native (0.81.5) + Expo (~54.0.22)
+- **Engine**: Godot Engine integration via `@borndotcom/react-native-godot`
+- **Navigation**: Expo Router with React Navigation
+- **Key Dependencies**:
+  - `@borndotcom/react-native-godot` (Godot Engine integration)
+  - `expo-router` (file-based routing)
+  - `@react-navigation/bottom-tabs` (tab navigation)
+  - `react-native-reanimated` (animations)
+  - `react-native-gesture-handler` (touch controls)
+- **Special Features**:
+  - Cross-platform Godot game embedding
+  - Custom touch controls overlay
+  - Direct Godot Input API access
+  - Custom Expo plugin for iOS/Android builds
+  - LibGodot prebuilt libraries management
+- **Build Commands**:
+  ```bash
+  pnpm install                    # Install + download prebuilt libraries
+  pnpm start                      # Start Expo development server
+  pnpm run android                # Run on Android
+  pnpm run ios                    # Run on iOS
+  pnpm run web                    # Run on web
+  ```
+
+## 9. Development Workflow
 
 1. Create new app scaffold:
    ```bash
@@ -125,7 +151,7 @@ This document describes the technical architecture of each application in the `a
    yarn workspace @onekeyhq/<app> test
    ```
 
-## 9. Naming Conventions
+## 10. Naming Conventions
 
 - Prefix all workspace names with `@onekeyhq/`
 - Use kebab-case for UI components

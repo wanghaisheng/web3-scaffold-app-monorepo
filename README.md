@@ -93,44 +93,56 @@ yarn app:ext
 
 ### 核心文档
 
-- [应用架构](docs/applications-architecture.md) - 各应用的技术架构详解
-- [项目意图](docs/repo-intent.md) - 项目目标和设计意图
-- [品牌替换分析](docs/brand-replacement-analysis.md) - OneKey 品牌名替换指南
-- [Packages 组织学习](docs/packages-organization-learning.md) - OneKey packages 组织与跨平台复用策略
-- [跨平台组件复用](docs/cross-platform-component-reuse.md) - Web 和 App 组件跨平台复用机制
-- [后端实现与复用](docs/backend-implementation-reuse.md) - App/Web/Extension 后端实现与复用机制
-- [在线功能实现](docs/online-features-implementation.md) - 区块链节点连接和 API 服务实现详解
-- [数据库与跨端同步](docs/database-cross-platform-sync.md) - 本地数据库策略和跨端数据同步机制
-- [数据库技术选型](docs/database-technology-choice.md) - Realm vs SQLite 技术选型分析
-- [服务端数据库同步](docs/server-db-cross-platform-sync.md) - Drizzle + Cloudflare D1 架构下的跨端同步策略
-- [多场景数据库架构](docs/multi-scenario-database-architecture.md) - Drizzle 支持钱包/DApp/冷钱包三大场景
-- [场景可行性分析（最终版）](docs/scenario-feasibility-analysis-final.md) - 当前架构下文档场景可行性评估（完整 OneKey 架构）
-- [Bitcoin Ordinals Roadmap（优先级版）](docs/bitcoin-ordinals-roadmap-prioritized.md) - 基于 2025 热门项目 + GutHealth DAO 的 Ordinals 实施路线图
-- [益生菌 Ordinals 创新点子](docs/probiotics-ordinals-ideas.md) - 益生菌市场与 Ordinals 技术结合的创新应用场景
-- [益生菌 Ordinals 市场分析](docs/probiotics-ordinals-market-analysis.md) - 市场潜力与社媒传播角度评估及切入点分析
+- [应用架构](docs/core/applications-architecture.md) - 各应用的技术架构详解
+- [项目意图](docs/core/repo-intent.md) - 项目目标和设计意图
+- [品牌替换分析](docs/core/brand-replacement-analysis.md) - OneKey 品牌名替换指南
+- [Packages 组织学习](docs/core/packages-organization-learning.md) - OneKey packages 组织与跨平台复用策略
+- [跨平台组件复用](docs/core/cross-platform-component-reuse.md) - Web 和 App 组件跨平台复用机制
+- [后端实现与复用](docs/core/backend-implementation-reuse.md) - App/Web/Extension 后端实现与复用机制
+
+### 数据库文档
+
+- [数据库与跨端同步](docs/database/database-cross-platform-sync.md) - 本地数据库策略和跨端数据同步机制
+- [数据库技术选型](docs/database/database-technology-choice.md) - Realm vs SQLite 技术选型分析
+- [服务端数据库同步](docs/database/server-db-cross-platform-sync.md) - Drizzle + Cloudflare D1 架构下的跨端同步策略
+- [多场景数据库架构](docs/database/multi-scenario-database-architecture.md) - Drizzle 支持钱包/DApp/冷钱包三大场景
+
+### 在线功能
+
+- [在线功能实现](docs/online/online-features-implementation.md) - 区块链节点连接和 API 服务实现详解
+
+### Ordinals 文档
+
+- [Bitcoin Ordinals Roadmap（优先级版）](docs/ordinals/bitcoin-ordinals-roadmap-prioritized.md) - 基于 2025 热门项目 + GutHealth DAO 的 Ordinals 实施路线图
+- [益生菌 Ordinals 创新点子](docs/ordinals/probiotics-ordinals-ideas.md) - 益生菌市场与 Ordinals 技术结合的创新应用场景
+- [益生菌 Ordinals 市场分析](docs/ordinals/probiotics-ordinals-market-analysis.md) - 市场潜力与社媒传播角度评估及切入点分析
+- [Bitcoin Ordinals 架构](docs/ordinals/bitcoin-ordinals-architecture.md) - Bitcoin Ordinals 协议架构设计
+- [BTC Ordinals 合规架构](docs/ordinals/btc-ordinals-compliant-architecture.md) - BTC Ordinals 合规架构设计
+- [理想 Bitcoin Ordinals 架构](docs/ordinals/ideal-bitcoin-ordinals-architecture.md) - 理想 Bitcoin Ordinals 架构设计
+
+### 场景分析
+
+- [场景可行性分析（最终版）](docs/scenario/scenario-feasibility-analysis-final.md) - 当前架构下文档场景可行性评估（完整 OneKey 架构）
 
 ### 业务规划
 
-- [产品策略](docs/product-strategy.md) - 基于 monorepo 的产品策略
-- [产品规划](docs/product-planning.md) - 详细的产品规划文档
-- [产品矩阵](docs/product-matrix.md) - 产品矩阵与品牌架构
-- [项目构思](docs/brainstorm-project.md) - GutHealth DAO 项目构思
+- [产品策略](docs/product/product-strategy.md) - 基于 monorepo 的产品策略
+- [产品规划](docs/product/product-planning.md) - 详细的产品规划文档
+- [产品矩阵](docs/product/product-matrix.md) - 产品矩阵与品牌架构
+- [项目构思](docs/product/brainstorm-project.md) - GutHealth DAO 项目构思
 
 ### 开发指南
 
-- [iOS App 上架 Checklist](docs/ios-app-submission-checklist.md) - iOS App 首次上架完整清单，避免审核被拒
+- [iOS App 上架 Checklist](docs/development/ios-app-submission-checklist.md) - iOS App 首次上架完整清单，避免审核被拒
 
-### 技术专题
+### 项目文档
 
-- [Bitcoin Ordinals 架构](docs/bitcoin-ordinals-architecture.md) - Bitcoin Ordinals 实现架构
-- [Ordinals 合规架构](docs/btc-ordinals-compliant-architecture.md) - 合规的 Ordinals 架构
-- [理想 Ordinals 架构](docs/ideal-bitcoin-ordinals-architecture.md) - 理想的 Ordinals 架构设计
+- [Bug 规则](docs/project/BUG_RULES.md) - 项目 Bug 处理规则
+- [Issue 模板](docs/project/ISSUE_TEMPLATE.md) - Issue 提交模板
 
 ### 参考文档
 
 - [OneKey 上游 README](docs/reference/onekey-upstream-README.md) - OneKey 原始 README（参考）
-- [Bug 规则](docs/BUG_RULES.md) - 漏洞奖励规则
-- [Issue 模板](docs/ISSUE_TEMPLATE.md) - 问题报告模板
 
 ## 🎯 设计原则
 
