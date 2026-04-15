@@ -130,6 +130,18 @@ export default {
     'expo-secure-store',
     'expo-localization',
     'expo-font',
+    './plugins/godot',
+    [
+      'expo-build-properties',
+      {
+        android: {
+          minSdkVersion: 29,
+          extraMavenRepos: [
+            '../../node_modules/react-native-godot/android/libs/libgodot-android/4.5.1.migeran.2'
+          ]
+        }
+      }
+    ]
   ],
   githubUrl: 'https://github.com/bearstudio/start-ui-native',
   updates: {

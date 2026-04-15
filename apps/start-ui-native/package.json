@@ -5,8 +5,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "prepare": "pnpm gen:api && lefthook install",
+    "prepare": "pnpm gen:api && lefthook install && pnpm run build:plugin",
     "prebuild": "expo prebuild",
+    "build:plugin": "cd plugins/godot && pnpm build",
     "start": "expo start",
     "dev": "expo start --go",
     "dev:build:android": "APP_ENV=development expo prebuild --clean && expo run:android",
@@ -67,6 +68,7 @@
     "expo-system-ui": "55.0.13",
     "expo-updates": "55.0.18",
     "expo-web-browser": "55.0.12",
+    "expo-build-properties": "55.0.11",
     "i18next": "25.8.18",
     "lucide-react-native": "0.577.0",
     "react": "19.2.0",
