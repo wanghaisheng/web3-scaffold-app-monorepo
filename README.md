@@ -97,6 +97,7 @@ yarn app:ext
 - [项目意图](docs/repo-intent.md) - 项目目标和设计意图
 - [品牌替换分析](docs/brand-replacement-analysis.md) - OneKey 品牌名替换指南
 - [Packages 组织学习](docs/packages-organization-learning.md) - OneKey packages 组织与跨平台复用策略
+- [跨平台组件复用](docs/cross-platform-component-reuse.md) - Web 和 App 组件跨平台复用机制
 
 ### 业务规划
 
