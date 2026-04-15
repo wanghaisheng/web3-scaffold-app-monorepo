@@ -101,6 +101,7 @@ yarn app:ext
 - [后端实现与复用](docs/backend-implementation-reuse.md) - App/Web/Extension 后端实现与复用机制
 - [在线功能实现](docs/online-features-implementation.md) - 区块链节点连接和 API 服务实现详解
 - [数据库与跨端同步](docs/database-cross-platform-sync.md) - 本地数据库策略和跨端数据同步机制
+- [数据库技术选型](docs/database-technology-choice.md) - Realm vs SQLite 技术选型分析
 
 ### 业务规划
 
