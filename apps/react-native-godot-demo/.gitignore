@@ -1,10 +1,12 @@
 # Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
 
-# dependencies
+# Dependencies
 node_modules/
+.pnpm-debug.log*
 
 # Expo
 .expo/
+.expo-shared/
 dist/
 web-build/
 expo-env.d.ts
@@ -17,30 +19,100 @@ expo-env.d.ts
 *.p12
 *.key
 *.mobileprovision
+*.cer
 
-# Metro
-.metro-health-check*
-
-# debug
-npm-debug.*
-yarn-debug.*
-yarn-error.*
-
-# macOS
-.DS_Store
-*.pem
-
-# local env files
-.env*.local
-
-# typescript
-*.tsbuildinfo
-
-app-example
-
-# generated native folders
+# Generated native folders
 /ios
 /android
 
+# Metro
+.metro-health-check*
+.metro-scacher*
+
+# Debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+pnpm-debug.*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.pem
+Icon
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.directory
+
+# Local env files
+.env*.local
+.env
+.env.production
+.env.development
+
+# TypeScript
+*.tsbuildinfo
+*.tsbuildinfo.*
+
+# Testing
+coverage/
+.nyc_output/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Godot specific
+*.godot/
+*.import
+*.export
+*.tscn
+*.remap
+*.ctex
+*.tres
+*.pck
+
+# Plugin build
 /plugin/build
 /ios/main.pck
+
+# Build artifacts
+build/
+out/
+*.aab
+*.apk
+*.app
+*.dmg
+*.exe
+*.ipa
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Lock files (keeping package-lock.json and pnpm-lock.yaml)
+# yarn.lock
+
+# Misc
+app-example
+*.orig
+*.bak
+*.backup
