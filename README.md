@@ -139,6 +139,7 @@ yarn app:ext
 
 - [Bug 规则](docs/project/BUG_RULES.md) - 项目 Bug 处理规则
 - [Issue 模板](docs/project/ISSUE_TEMPLATE.md) - Issue 提交模板
+- [.gitignore 审视报告](docs/project/gitignore-audit.md) - 根目录和子目录 .gitignore 文件审视分析
 
 ### 参考文档
 
