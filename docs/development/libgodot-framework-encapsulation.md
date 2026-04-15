@@ -450,9 +450,176 @@ class GamePage extends StatelessWidget {
 - ⚠️ 需要创建 Flutter 插件
 - ⚠️ 需要处理平台通道通信
 
-### 3.6 SvelteKit
+### 3.6 UniApp
 
-#### 3.6.1 SvelteKit（Web 框架）
+#### 3.6.1 UniApp（跨平台框架）
+
+**可行性**：✅ 中（App 端）/ ❌ 低（H5 端）
+
+**UniApp 架构分析**：
+- **H5 端**：纯 Web 框架，基于 Vue
+- **小程序端**：小程序框架
+- **App 端**：基于原生封装（iOS/Android）
+
+**App 端实现方式**：
+```vue
+<template>
+  <view class="container">
+    <!-- UniApp 原生组件 -->
+    <godot-view 
+      :src="gamePath"
+      @godot-ready="onGodotReady"
+      style="width: 100%; height: 100%;"
+    />
+  </view>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      gamePath: '/static/godot/main.pck'
+    }
+  },
+  methods: {
+    onGodotReady(godotInstance) {
+      // Godot 实例就绪
+      console.log('Godot ready:', godotInstance);
+    }
+  }
+}
+</script>
+```
+
+**技术路径**：
+1. 创建 UniApp 原生插件（uni-app 原生插件）
+2. 封装 LibGodot（iOS/Android）
+3. 提供 Vue 组件
+4. 处理平台差异
+
+**优势**：
+- ✅ UniApp 支持原生插件
+- ✅ 可以在 App 端封装 LibGodot
+- ✅ 跨平台支持（iOS/Android）
+- ✅ Vue 生态
+
+**挑战**：
+- ⚠️ 需要创建原生插件
+- ⚠️ 需要处理 UniApp 的原生插件 API
+- ⚠️ H5 端无法使用 LibGodot
+
+**H5 端替代方案**：
+```vue
+<template>
+  <canvas id="godot-canvas"></canvas>
+</template>
+
+<script>
+import { onMounted } from 'vue';
+import { Godot } from 'godot.js';
+
+onMounted(() => {
+  const godot = new Godot({
+    canvas: document.getElementById('godot-canvas'),
+    args: ['--main-pack', '/godot-game.pck']
+  });
+  godot.start();
+});
+</script>
+```
+
+### 3.7 Taro
+
+#### 3.7.1 Taro（跨平台框架）
+
+**可行性**：✅ 中（App 端）/ ❌ 低（H5 端）
+
+**Taro 架构分析**：
+- **H5 端**：纯 Web 框架，基于 React
+- **小程序端**：小程序框架
+- **App 端**：基于 React Native（Taro 3.x）
+
+**App 端实现方式**：
+```tsx
+import React, { useEffect } from 'react';
+import { View } from '@tarojs/components';
+import { RTNGodotView, runOnGodotThread } from '@tarojs/react-native-godot';
+
+export default function GamePage() {
+  useEffect(() => {
+    const initGodot = async () => {
+      await RTNGodot.init({
+        '--main-pack': '/path/to/game.pck'
+      });
+    };
+    initGodot();
+  }, []);
+
+  const pressAction = (action: string) => {
+    runOnGodotThread(() => {
+      'worklet';
+      const Godot = RTNGodot.API();
+      const Input = Godot.Input;
+      Input.action_press(action);
+    });
+  };
+
+  return (
+    <View style={{ flex: 1 }}>
+      <RTNGodotView style={{ flex: 1 }} />
+      <View style={{ position: 'absolute', bottom: 50 }}>
+        <View onClick={() => pressAction('ui_left')}>←</View>
+        <View onClick={() => pressAction('ui_accept')}>跳</View>
+        <View onClick={() => pressAction('ui_right')}>→</View>
+      </View>
+    </View>
+  );
+}
+```
+
+**技术路径**：
+1. 基于 React Native Godot 封装
+2. 创建 Taro React Native 集成
+3. 提供 Taro 组件
+4. 处理平台差异
+
+**优势**：
+- ✅ Taro 3.x App 端基于 React Native
+- ✅ 可以复用 React Native Godot 的封装
+- ✅ 跨平台支持（iOS/Android）
+- ✅ React 生态
+
+**挑战**：
+- ⚠️ 需要维护 Taro React Native 集成
+- ⚠️ 需要适配 Taro 的 API
+- ⚠️ H5 端无法使用 LibGodot
+
+**H5 端替代方案**：
+```tsx
+import React, { useEffect } from 'react';
+import { View, Canvas } from '@tarojs/components';
+import { Godot } from 'godot.js';
+
+export default function GamePage() {
+  useEffect(() => {
+    const godot = new Godot({
+      canvas: document.getElementById('godot-canvas'),
+      args: ['--main-pack', '/godot-game.pck']
+    });
+    godot.start();
+  }, []);
+
+  return (
+    <View>
+      <canvas id="godot-canvas"></canvas>
+    </View>
+  );
+}
+```
+
+### 3.8 SvelteKit
+
+#### 3.8.1 SvelteKit（Web 框架）
 
 **可行性**：❌ 低（直接封装 LibGodot）
 
@@ -495,6 +662,8 @@ class GamePage extends StatelessWidget {
 | Electron | ✅ 高 | 支持原生模块 | 中 | ⭐⭐⭐⭐ |
 | Tauri | ✅ 中 | 需要 Rust 绑定 | 高 | ⭐⭐⭐ |
 | Flutter | ✅ 高 | 支持平台通道 | 中 | ⭐⭐⭐⭐ |
+| UniApp | ✅ 中（App 端） | 支持原生插件 | 中 | ⭐⭐⭐ |
+| Taro | ✅ 中（App 端） | 基于 React Native | 中 | ⭐⭐⭐ |
 | TanStack Start | ❌ 低 | Web 框架 | - | ⭐ |
 | Astro | ❌ 低 | Web 框架 | - | ⭐ |
 | SvelteKit | ❌ 低 | Web 框架 | - | ⭐ |
@@ -545,6 +714,18 @@ class GamePage extends StatelessWidget {
 - ⚠️ 需要维护集成
 - ⚠️ 需要适配 TanStack 生态
 
+**UniApp**：
+- ✅ 支持原生插件（App 端）
+- ⚠️ 需要创建原生插件
+- ⚠️ H5 端无法使用 LibGodot
+- ⚠️ 小程序端无法使用 LibGodot
+
+**Taro**：
+- ✅ 基于 React Native（App 端）
+- ⚠️ 需要维护 Taro React Native 集成
+- ⚠️ H5 端无法使用 LibGodot
+- ⚠️ 小程序端无法使用 LibGodot
+
 #### 4.3.3 低可行性框架
 
 **Web 框架**（TanStack Start、Astro、SvelteKit）：
@@ -567,6 +748,8 @@ class GamePage extends StatelessWidget {
 **替代方案**：
 - Flutter + Flutter Godot 插件
 - Electron + LibGodot 原生模块
+- UniApp + UniApp 原生插件（Vue 生态）
+- Taro + Taro React Native 集成（React 生态）
 
 ### 5.2 Web 应用开发
 
@@ -577,6 +760,8 @@ class GamePage extends StatelessWidget {
 - Vite + godot.js
 - Astro + godot.js
 - SvelteKit + godot.js
+- UniApp H5 + godot.js
+- Taro H5 + godot.js
 
 **实现方式**：
 ```typescript
@@ -600,7 +785,7 @@ godot.start();
 
 ### 6.1 回答核心问题
 
-**问题**：按照 React Native Godot 对 LibGodot 的封装，是不是所有的框架（比如 TanStack、Astro）都可以封装 LibGodot 来实现 PWA/App 的开发？
+**问题**：按照 React Native Godot 对 LibGodot 的封装，是不是所有的框架（比如 TanStack、Astro、UniApp、Taro）都可以封装 LibGodot 来实现 PWA/App 的开发？
 
 **答案**：**不是所有框架都可以封装 LibGodot**。
 
@@ -612,14 +797,20 @@ godot.start();
    - ✅ Flutter（可以创建插件）
    - ✅ Tauri（可以创建 Rust 绑定）
 
-2. **Web 框架不能直接封装 LibGodot**：
+2. **跨平台框架（App 端）可以封装 LibGodot**：
+   - ✅ UniApp（App 端支持原生插件）
+   - ✅ Taro（App 端基于 React Native）
+   - ⚠️ 但 H5 端和小程序端无法使用 LibGodot
+
+3. **Web 框架不能直接封装 LibGodot**：
    - ❌ TanStack Start（Web 框架）
    - ❌ Astro（Web 框架）
    - ❌ SvelteKit（Web 框架）
    - ⚠️ 需要使用 Godot WebAssembly 替代
 
-3. **关键限制**：
+4. **关键限制**：
    - LibGodot 不支持 Web 平台
+   - LibGodot 不支持小程序平台
    - Web 框架不支持原生模块
    - 需要 LibGodot 支持的平台才能封装
 
@@ -629,6 +820,11 @@ godot.start();
 - 使用 React Native + React Native Godot
 - 或使用 Flutter + Flutter Godot 插件
 - 或使用 Electron + LibGodot 原生模块
+
+**跨平台应用开发（UniApp/Taro）**：
+- App 端：使用原生插件封装 LibGodot
+- H5 端：使用 Godot WebAssembly
+- 小程序端：无法使用 Godot（LibGodot 不支持小程序）
 
 **Web 应用开发**：
 - 使用 Godot WebAssembly
@@ -641,4 +837,4 @@ godot.start();
 
 ---
 
-> **总结**：LibGodot 的封装能力受限于框架是否支持原生模块和 LibGodot 是否支持该平台。React Native、Electron、Flutter 等原生应用框架可以封装 LibGodot，但 TanStack Start、Astro、SvelteKit 等 Web 框架不能直接封装 LibGodot，需要使用 Godot WebAssembly 替代。
+> **总结**：LibGodot 的封装能力受限于框架是否支持原生模块和 LibGodot 是否支持该平台。React Native、Electron、Flutter 等原生应用框架可以封装 LibGodot。UniApp 和 Taro 等**跨平台框架的 App 端**可以封装 LibGodot（通过原生插件），但 H5 端和小程序端无法使用 LibGodot，需要使用 Godot WebAssembly 替代。TanStack Start、Astro、SvelteKit 等 Web 框架不能直接封装 LibGodot，需要使用 Godot WebAssembly 替代。
