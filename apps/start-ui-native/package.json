@@ -160,6 +160,9 @@
     ],
     "overrides": {
       "@react-native-community/slider": "5.0.1"
+    },
+    "patchedDependencies": {
+      "react-native-godot@1.0.1": "patches/react-native-godot.patch"
     }
   }
 }
