@@ -107,6 +107,7 @@ yarn app:ext
 - [场景可行性分析（最终版）](docs/scenario-feasibility-analysis-final.md) - 当前架构下文档场景可行性评估（完整 OneKey 架构）
 - [Bitcoin Ordinals Roadmap（优先级版）](docs/bitcoin-ordinals-roadmap-prioritized.md) - 基于 2025 热门项目 + GutHealth DAO 的 Ordinals 实施路线图
 - [益生菌 Ordinals 创新点子](docs/probiotics-ordinals-ideas.md) - 益生菌市场与 Ordinals 技术结合的创新应用场景
+- [益生菌 Ordinals 市场分析](docs/probiotics-ordinals-market-analysis.md) - 市场潜力与社媒传播角度评估及切入点分析
 
 ### 业务规划
 
