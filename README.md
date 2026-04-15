@@ -106,6 +106,10 @@ yarn app:ext
 - [产品矩阵](docs/product-matrix.md) - 产品矩阵与品牌架构
 - [项目构思](docs/brainstorm-project.md) - GutHealth DAO 项目构思
 
+### 开发指南
+
+- [iOS App 上架 Checklist](docs/ios-app-submission-checklist.md) - iOS App 首次上架完整清单，避免审核被拒
+
 ### 技术专题
 
 - [Bitcoin Ordinals 架构](docs/bitcoin-ordinals-architecture.md) - Bitcoin Ordinals 实现架构
