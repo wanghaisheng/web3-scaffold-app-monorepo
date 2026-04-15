@@ -103,6 +103,7 @@ yarn app:ext
 - [数据库与跨端同步](docs/database-cross-platform-sync.md) - 本地数据库策略和跨端数据同步机制
 - [数据库技术选型](docs/database-technology-choice.md) - Realm vs SQLite 技术选型分析
 - [服务端数据库同步](docs/server-db-cross-platform-sync.md) - Drizzle + Cloudflare D1 架构下的跨端同步策略
+- [多场景数据库架构](docs/multi-scenario-database-architecture.md) - Drizzle 支持钱包/DApp/冷钱包三大场景
 
 ### 业务规划
 
