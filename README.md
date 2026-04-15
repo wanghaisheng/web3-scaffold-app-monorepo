@@ -1,167 +1,194 @@
 <div align="center">
 
-# OneKey: Secure Crypto Wallet
+# Web3 Monorepo Scaffold
 
-Anti-scam, open-source crypto wallet for every chain.
-Supports Bitcoin, Ethereum, Solana, Tron, BNB Smart Chain, and more.
+基于 OneKey monorepo 架构学习的 Web3 多端应用脚手架
 
-[![Github Stars](https://img.shields.io/github/stars/OneKeyHQ/app-monorepo?t&logo=github&style=for-the-badge&labelColor=000)](https://github.com/OneKeyHQ/app-monorepo/stargazers)
-[![Version](https://img.shields.io/github/release/OneKeyHQ/app-monorepo.svg?style=for-the-badge&labelColor=000)](https://github.com/OneKeyHQ/app-monorepo/releases)
-[![Contributors](https://img.shields.io/github/contributors-anon/OneKeyHQ/app-monorepo?style=for-the-badge&labelColor=000)](https://github.com/OneKeyHQ/app-monorepo/graphs/contributors)
-[![Last commit](https://img.shields.io/github/last-commit/OneKeyHQ/app-monorepo.svg?style=for-the-badge&labelColor=000)](https://github.com/OneKeyHQ/app-monorepo/commits/onekey)
-[![Issues](https://img.shields.io/github/issues-raw/OneKeyHQ/app-monorepo.svg?style=for-the-badge&labelColor=000)](https://github.com/OneKeyHQ/app-monorepo/issues?q=is%3Aissue+is%3Aopen)
-[![Pull Requests](https://img.shields.io/github/issues-pr-raw/OneKeyHQ/app-monorepo.svg?style=for-the-badge&labelColor=000)](https://github.com/OneKeyHQ/app-monorepo/pulls?q=is%3Apr+is%3Aopen)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/OneKeyHQ/app-monorepo)
-[![Twitter Follow](https://img.shields.io/twitter/follow/OneKeyHQ?style=for-the-badge&labelColor=000)](https://twitter.com/OneKeyHQ)
+A Web3 multi-platform application scaffold based on OneKey monorepo architecture learning
 
 </div>
 
-## 📥 Download
+## 📋 项目概述
 
-| Platform | Link |
-|----------|------|
-| iOS | [App Store](https://apps.apple.com/us/app/onekey-open-source-wallet/id1609559473) |
-| Android | [Google Play](https://play.google.com/store/apps/details?id=so.onekey.app.wallet) |
-| Desktop | [macOS / Windows / Linux](https://onekey.so/download?client=desktop) |
-| Browser Extension | [Chrome Web Store](https://onekey.so/download?client=browserExtension) |
-| Bridge | [Download](https://onekey.so/download?client=bridge) |
+本项目旨在学习和复用 OneKey monorepo 的组织架构，为 Web3 领域的业务快速布局提供可复用的脚手架。
 
-## 📋 Table of Contents
+**核心目标**：
+- 学习 OneKey monorepo 的工程化组织方式
+- 提供多端（Web/Mobile/Desktop/Extension）统一开发框架
+- 抽象可复用的业务模块和 UI 组件
+- 支持快速根据特定业务完成 Web3 领域布局
 
-- [📥 Download](#-download)
-- [📖 Documentation](#-documentation)
-- [🗂 Project Structure](#-project-structure)
-- [🚀 Getting Onboard](#-getting-onboard)
-- [🧑‍💻 Development](#-development)
-- [🏡 Community & Enterprise Edition](#-community--enterprise-edition)
-- [💡 Support](#-support)
-- [🔰 Security](#-security)
-- [💬 Docs in Your Languages](#-docs-in-your-languages)
-- [🪄 Repo Activity](#-repo-activity)
-- [🙋‍♂️ We're Hiring!](#%EF%B8%8F-were-hiring)
-- [✨ Contributors](#-contributors)
-- [📄 License](#-license)
+## 🏗️ 架构概览
 
-## 📖 Documentation
-
-- [DeepWiki — Full Codebase Documentation](https://deepwiki.com/OneKeyHQ/app-monorepo)
-- [Bug Bounty Rules](docs/BUG_RULES.md)
-- [Security Policy](SECURITY.md)
-
-## 🗂 Project Structure
-
-This is a monorepo managed with Yarn workspaces.
+### Monorepo 结构
 
 ```
-app-monorepo/
-├── apps/
-│   ├── desktop/        # Electron desktop app (macOS, Windows, Linux)
-│   ├── ext/            # Browser extension (Chrome)
-│   ├── mobile/         # React Native mobile app (iOS, Android)
-│   ├── web/            # Web application
-│   └── web-embed/      # Embeddable web component
-├── packages/
-│   ├── components/     # Shared UI component library
-│   ├── core/           # Core business logic & crypto utilities
-│   ├── kit/            # Main UI kit
-│   ├── kit-bg/         # Background service kit
-│   ├── qr-wallet-sdk/  # QR-code hardware wallet SDK
-│   └── shared/         # Shared utilities, constants, and types
-├── development/        # Dev tooling & scripts
-├── patches/            # Dependency patches
-└── docs/               # Documentation & i18n
+app-monorepo-x/
+├── apps/                      # 应用层
+│   ├── desktop/              # Electron 桌面应用
+│   ├── ext/                  # 浏览器扩展
+│   ├── mobile/               # React Native 移动应用
+│   ├── web/                  # 传统 React SPA
+│   ├── web-astro/            # Astro + React Islands
+│   ├── web-embed/            # 可嵌入的 Web 组件
+│   └── react-native-godot-demo/  # Godot 游戏集成演示
+├── packages/                  # 共享包层
+│   ├── components/           # UI 组件库
+│   ├── core/                 # 区块链核心逻辑
+│   ├── kit/                  # 业务逻辑 hooks
+│   ├── kit-bg/               # 后台服务
+│   ├── qr-wallet-sdk/        # 二维码钱包 SDK
+│   └── shared/               # 工具函数和常量
+├── development/              # 开发工具和脚本
+├── patches/                  # 依赖补丁
+└── docs/                     # 文档
 ```
 
-## 🚀 Getting Onboard
+### 技术栈
 
-> **Prerequisites:** Node.js >= 22, Yarn 4.x (bundled via Corepack), [Git LFS](https://git-lfs.github.com/)
+| 层级 | 技术 |
+|------|------|
+| 前端框架 | React 19, React Native 0.81, Astro 4 |
+| UI 库 | Tamagui, Tailwind CSS |
+| 状态管理 | Jotai, Redux Toolkit |
+| 构建工具 | Webpack, RSPack, Metro |
+| 包管理 | Yarn 4.x (PnP) |
+| 桌面框架 | Electron 39.5.1 |
+| 区块链 | viem, ethers, solana-web3.js |
+
+## 🚀 快速开始
+
+### 环境要求
+
+- Node.js >= 22
+- Yarn 4.x (通过 Corepack)
+- Git LFS
+
+### 安装依赖
 
 ```bash
-git clone https://github.com/OneKeyHQ/app-monorepo.git
-cd app-monorepo
-yarn
-yarn app:web    # starts dev server at http://localhost:3000
+yarn install
 ```
 
-<details>
-<summary><strong>📱 Platform-specific requirements</strong></summary>
+### 开发命令
 
-- **iOS:** Xcode >= 13.3
-- **Android:** JDK >= 11
+```bash
+# Web 应用
+yarn app:web
 
-</details>
+# iOS 应用
+yarn app:ios
 
-## 🧑‍💻 Development
+# Android 应用
+yarn app:android
 
-Run these commands from the root directory:
+# 桌面应用
+yarn app:desktop
 
-| Command | Description |
-|---------|-------------|
-| `yarn app:web` | Start web dev server (port 3000) |
-| `yarn app:ios` | Run iOS app via USB-connected device |
-| `yarn app:android` | Run Android app |
-| `yarn app:desktop` | Run desktop (Electron) app |
-| `yarn app:ext` | Run browser extension |
+# 浏览器扩展
+yarn app:ext
+```
 
-## 🏡 Community & Enterprise Edition
+## 📚 文档
 
-- 🏡 🧔🏻‍♂️ **Community Edition** — Free forever for individuals and open-source communities.
-- 🏦 💼 **Enterprise Edition** — Coming soon. Star this repo to get notified when it's ready.
+### 核心文档
 
-## 💡 Support
+- [应用架构](docs/applications-architecture.md) - 各应用的技术架构详解
+- [项目意图](docs/repo-intent.md) - 项目目标和设计意图
+- [品牌替换分析](docs/brand-replacement-analysis.md) - OneKey 品牌名替换指南
 
-- [Community Forum](https://github.com/orgs/OneKeyHQ/discussions) — Help with building, best practices discussion.
-- [GitHub Issues](https://github.com/OneKeyHQ/app-monorepo/issues) — Bug reports and errors.
+### 业务规划
 
-## 🔰 Security
+- [产品策略](docs/product-strategy.md) - 基于 monorepo 的产品策略
+- [产品规划](docs/product-planning.md) - 详细的产品规划文档
+- [产品矩阵](docs/product-matrix.md) - 产品矩阵与品牌架构
+- [项目构思](docs/brainstorm-project.md) - GutHealth DAO 项目构思
 
-- Please read the [Bug Bounty Rules](docs/BUG_RULES.md), we have detailed the exact plan in this article.
-- Report suspected vulnerabilities privately to **dev@onekey.so** or via [BugRap](https://bugrap.io/bounties/OneKey).
-- Please do **NOT** create publicly viewable issues for suspected security vulnerabilities.
-- As an open source project, although we are not yet profitable, we try to give some rewards to white hat hackers who disclose vulnerabilities to us in a timely manner.
-- See [SECURITY.md](SECURITY.md) for full details.
+### 技术专题
 
-## 💬 Docs in Your Languages
+- [Bitcoin Ordinals 架构](docs/bitcoin-ordinals-architecture.md) - Bitcoin Ordinals 实现架构
+- [Ordinals 合规架构](docs/btc-ordinals-compliant-architecture.md) - 合规的 Ordinals 架构
+- [理想 Ordinals 架构](docs/ideal-bitcoin-ordinals-architecture.md) - 理想的 Ordinals 架构设计
 
-| Available Languages |
-|---------------------|
-| [🇨🇳 简体中文](docs/i18n/README.zh-cn.md) |
-| [🇩🇪 Deutsch](docs/i18n/README.de.md) |
-| [🇯🇵 日本語](docs/i18n/README.jp.md) |
-| [🇫🇷 Français](docs/i18n/README.fr.md) |
-| [🇮🇹 Italiano](docs/i18n/README.it.md) |
+### 参考文档
 
-## 🪄 Repo Activity
+- [OneKey 上游 README](docs/reference/onekey-upstream-README.md) - OneKey 原始 README（参考）
+- [Bug 规则](docs/BUG_RULES.md) - 漏洞奖励规则
+- [Issue 模板](docs/ISSUE_TEMPLATE.md) - 问题报告模板
 
-![Repo Activity](https://repobeats.axiom.co/api/embed/5f8b83656094956b2d6274929f6eaa2e068a6cfb.svg "Repobeats analytics image")
+## 🎯 设计原则
 
-## 🙋‍♂️ We're Hiring!
+### 1. 学习导向
 
-We're hiring for remote roles worldwide — global pay, ESOP for everyone, open-source culture.
+本项目以学习 OneKey monorepo 的工程化实践为主要目标，重点关注：
+- Monorepo 的组织结构
+- 多端代码复用策略
+- 模块化设计模式
+- 工程化工具链配置
 
-[**👉 View all open positions**](https://onekeyhq.atlassian.net/wiki/spaces/OC/overview)
+### 2. 可复用性
 
-<details>
-<summary><strong>Why join OneKey?</strong></summary>
+抽象出可复用的模块和组件，支持快速业务落地：
+- 统一的 UI 组件库
+- 可配置的业务逻辑模块
+- 标准化的开发脚手架
+- 完善的文档和示例
 
-| English | 中文 |
-|---------|------|
-| 🌍 Remote (Live anywhere) | 🌍 远程 (生活在哪个城市都可以) |
-| 💰 Global Pay (Literally) | 💰 全球一致的薪酬 (真的) |
-| 📈 ESOP (For everybody) | 📈 ESOP 计划 |
-| 🔓 Open Source (As you see) | 🔓 开源 (如你所见) |
-| 🤝 Awesome Colleagues (Hell Yeah!) | 🤝 超级棒的同事 (爽呆!) |
+### 3. 业务导向
 
-</details>
+针对 Web3 领域的业务需求，提供：
+- 多链钱包基础架构
+- DeFi 协议集成模板
+- NFT 交易平台框架
+- DAO 治理工具
 
-## ✨ Contributors
+## 🔧 开发指南
 
-[![Contributors](https://img.shields.io/github/contributors-anon/OneKeyHQ/app-monorepo?style=for-the-badge&labelColor=000)](https://github.com/OneKeyHQ/app-monorepo/graphs/contributors)
+### 添加新应用
 
-<a href="https://github.com/onekeyhq/app-monorepo/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=onekeyhq/app-monorepo&max=240&columns=24"/>
-</a>
+参考 [应用架构文档](docs/applications-architecture.md) 中的开发工作流：
 
-## 📄 License
+```bash
+# 1. 创建应用脚手架
+npx degit template-app apps/new-app
 
-This project is licensed under the [OneKey Standard Source License (O-SSL)](LICENSE.md).
+# 2. 安装依赖
+yarn install
+
+# 3. 配置环境
+cp .env.example .env
+
+# 4. 启动开发服务器
+yarn workspace @onekeyhq/<app> dev
+```
+
+### 添加新包
+
+```bash
+# 在 packages/ 目录下创建新包
+mkdir packages/new-package
+cd packages/new-package
+npm init -y
+
+# 在根 package.json 中注册
+# 在 tsconfig.base.json 中添加路径映射
+```
+
+## 📝 注意事项
+
+1. **学习性质**：本项目主要用于学习和参考，不建议直接用于生产环境
+2. **品牌替换**：如需去除 OneKey 品牌，参考 [品牌替换分析](docs/brand-replacement-analysis.md)
+3. **依赖管理**：部分依赖指向 OneKey 的 Git 仓库，需要评估是否需要 fork 维护
+4. **硬件钱包**：OneKey 硬件钱包 SDK 无法替换，需要评估是否使用官方方案
+
+## 🤝 贡献
+
+本项目主要用于学习和参考，欢迎提出改进建议。
+
+## 📄 许可证
+
+本项目基于 OneKey 的许可证，具体请参考 [LICENSE.md](LICENSE.md)。
+
+---
+
+> **提示**：本项目基于 [OneKey/app-monorepo](https://github.com/OneKeyHQ/app-monorepo) 学习而来，感谢 OneKey 团队的开源贡献。
