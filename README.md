@@ -96,6 +96,7 @@ yarn app:ext
 - [应用架构](docs/applications-architecture.md) - 各应用的技术架构详解
 - [项目意图](docs/repo-intent.md) - 项目目标和设计意图
 - [品牌替换分析](docs/brand-replacement-analysis.md) - OneKey 品牌名替换指南
+- [Packages 组织学习](docs/packages-organization-learning.md) - OneKey packages 组织与跨平台复用策略
 
 ### 业务规划
 
